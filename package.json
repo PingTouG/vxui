@@ -6,7 +6,9 @@
   "main": "lib/vxui.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js"
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "keywords": [
     "vue",
@@ -26,6 +28,7 @@
     "style-loader": "^1.1.1",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.2.0",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1",

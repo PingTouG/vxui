@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from '@/App'
-import VXUI from '../lib/vxui.js'
+import VXUI from '../packages'
 
 Vue.use(VXUI)
 
