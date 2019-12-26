@@ -6,7 +6,7 @@
 
 ```html
 <template>
-  <button>按钮</button>
+  <x-button>按钮</x-button>
 </template>
 
 <script>
