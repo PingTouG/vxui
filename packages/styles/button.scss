@@ -1,0 +1,51 @@
+@import './variables';
+@import './mixin';
+
+.x-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  background: #fff;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+
+  &:hover {
+    color: $primaryColor;
+    background-color: rgba($primaryColor, 0.1);
+    border-color: rgba($primaryColor, 0.2);
+  }
+
+  &--primary {
+    @include button($primaryColor);
+  }
+
+  &--success {
+    @include button($successColor);
+  }
+
+  &--info {
+    @include button($infoColor);
+  }
+
+  &--warning {
+    @include button($warningColor);
+  }
+
+  &--danger {
+    @include button($dangerColor);
+  }
+}
