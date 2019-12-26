@@ -12,8 +12,8 @@ module.exports = merge(base, {
   devtool: 'source-map',
   resolve: {
     alias: {
-      '@': resolve('../examples/src'),
-      '@v': resolve('../examples/src/views')
+      '@': resolve('../examples'),
+      '@v': resolve('../examples/views')
     }
   },
   plugins: [

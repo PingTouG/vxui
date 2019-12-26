@@ -18,8 +18,8 @@ npm init
 |   |—— webpack.common.js ---------- 公用配置
 |   |—— webpack.dev.js    ---------- 开发配置
 |   |—— webpack.prod.js   ---------- 打包配置
-|—— docs    ---------- 文档
 |—— examples --------- 例子
+|   |—— docs --------- 文档
 |   |—— index.js ----- 入口文件
 |—— lib    ----------- 打包后的文件
 |—— packages --------- 组件源码

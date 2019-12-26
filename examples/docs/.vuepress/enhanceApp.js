@@ -1,4 +1,4 @@
-import VXUI from '../../packages'
+import VXUI from '../../../packages'
 
 export default ({ Vue }) => {
   Vue.use(VXUI)
