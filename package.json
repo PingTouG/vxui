@@ -1,5 +1,5 @@
 {
-  "name": "vxui",
+  "name": "@pingtoug/vxui",
   "version": "0.0.1",
   "description": "基于Vue开发的UI组件库",
   "private": false,
