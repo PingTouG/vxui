@@ -12,7 +12,7 @@ module.exports = {
   ],
   themeConfig: {
     nav: [
-      { text: '指南', link: '/installation/' },
+      { text: '指南', link: '/installation' },
       { text: 'GitHub', link: 'https://github.com/PingTouG/vxui' }
     ],
     sidebar: [
@@ -20,8 +20,8 @@ module.exports = {
         title: '开发指南',
         collapsable: false,
         children: [
-          ['/installation/', '安装'],
-          ['/quickstart/', '快速开始']
+          ['/installation', '安装'],
+          ['/quickstart', '快速开始']
         ]
       },
       {
@@ -31,7 +31,7 @@ module.exports = {
           {
             title: 'Basic',
             collapsable: false,
-            children: [['/components/button/', 'Button 按钮']]
+            children: [['/components/button', 'Button 按钮']]
           }
         ]
       }
