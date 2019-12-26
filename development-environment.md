@@ -492,3 +492,30 @@ export default {}
 ```
 
 运行`npm run dev`，在浏览器输入`http://localhost:8080/`查看结果
+
+## 文档环境配置
+
+### 安装依赖包
+
+- `vuepress`
+- `vuepress-plugin-demo-block`
+
+```
+yarn add -D vuepress vuepress-plugin-demo-block
+```
+
+### 配置简单介绍
+
+文档环境是通过`vuepress`搭建的，详细配置参考[官方文档](https://vuepress.vuejs.org/)
+
+vuepress 配置文件是在`.vuepress/config.js`(此文件名是固定的)。
+
+- title: 网站标题
+- base: 网站基础 url
+- description: 网站描述
+- head：额外的需要被注入到当前页面的 HTML <head> 中的标签
+- themeConfig：主题配置(nav：配置导航，sidebar：侧边栏)
+
+#### 应用级配置
+
+通过`.vuepress/enhanceApp.js`来配置，可以在此文件中注入组件库用于写用例

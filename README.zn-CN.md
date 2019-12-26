@@ -5,4 +5,4 @@
   基于Vue开发的UI组件库
 </p>
 
-中文 | [英文](./README.md) | [开发环境](./docs/development-environment.md)
+中文 | [英文](./README.md) | [开发环境](./development-environment.md)
