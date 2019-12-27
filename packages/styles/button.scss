@@ -35,6 +35,10 @@
     background-color: #fff;
   }
 
+  &.is-round {
+    border-radius: 20px;
+  }
+
   &--primary {
     @include button($primaryColor);
     @include is-plain($primaryColor);

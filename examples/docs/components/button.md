@@ -24,6 +24,15 @@
 <x-button plain type="danger">危险按钮</x-button>
 </p>
 
+<p>
+<x-button round >圆角按钮</x-button>
+<x-button round type="primary">默认按钮</x-button>
+<x-button round type="success">成功按钮</x-button>
+<x-button round type="info">信息按钮</x-button>
+<x-button round type="warning">警告按钮</x-button>
+<x-button round type="danger">危险按钮</x-button>
+</p>
+
 ```vue
 <p>
 <x-button>默认按钮</x-button>

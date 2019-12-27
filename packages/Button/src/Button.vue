@@ -4,7 +4,8 @@
     :class="[
       `x-button--${type}`,
       {
-        'is-plain': plain
+        'is-plain': plain,
+        'is-round': round
       }
     ]"
   >
@@ -27,6 +28,10 @@ export default {
         ) !== -1
     },
     plain: {
+      type: Boolean,
+      default: false
+    },
+    round: {
       type: Boolean,
       default: false
     }
