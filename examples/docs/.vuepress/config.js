@@ -35,7 +35,7 @@ module.exports = {
           }
         ]
       }
-    ]
-  },
-  plugins: ['demo-code']
+    ],
+    sidebarDepth: 0
+  }
 }

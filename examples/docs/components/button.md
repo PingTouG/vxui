@@ -6,11 +6,40 @@
 
 基础的按钮用法
 
-::: demo
-<x-button>按钮</x-button>
-<x-button type="primary">默认按钮</x-button>
+<p>
+<x-button>默认按钮</x-button>
+<x-button type="primary">主要按钮</x-button>
 <x-button type="success">成功按钮</x-button>
 <x-button type="info">信息按钮</x-button>
 <x-button type="warning">警告按钮</x-button>
 <x-button type="danger">危险按钮</x-button>
-:::
+</p>
+
+<p>
+<x-button plain >朴素按钮</x-button>
+<x-button plain type="primary">默认按钮</x-button>
+<x-button plain type="success">成功按钮</x-button>
+<x-button plain type="info">信息按钮</x-button>
+<x-button plain type="warning">警告按钮</x-button>
+<x-button plain type="danger">危险按钮</x-button>
+</p>
+
+```vue
+<p>
+<x-button>默认按钮</x-button>
+<x-button type="primary">主要按钮</x-button>
+<x-button type="success">成功按钮</x-button>
+<x-button type="info">信息按钮</x-button>
+<x-button type="warning">警告按钮</x-button>
+<x-button type="danger">危险按钮</x-button>
+</p>
+
+<p>
+<x-button plain >朴素按钮</x-button>
+<x-button plain type="primary">默认按钮</x-button>
+<x-button plain type="success">成功按钮</x-button>
+<x-button plain type="info">信息按钮</x-button>
+<x-button plain type="warning">警告按钮</x-button>
+<x-button plain type="danger">危险按钮</x-button>
+</p>
+```
