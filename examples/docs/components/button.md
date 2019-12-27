@@ -7,16 +7,10 @@
 基础的按钮用法
 
 ::: demo
-
-```html
-<template>
-  <x-button text="按钮" />
-  <!-- <x-button text="按钮" type="primary" />
-  <x-button text="按钮" type="success" />
-  <x-button text="按钮" type="info" />
-  <x-button text="按钮" type="warning" />
-  <x-button text="按钮" type="danger" /> -->
-</template>
-```
-
+<x-button>按钮</x-button>
+<x-button type="primary">默认按钮</x-button>
+<x-button type="success">成功按钮</x-button>
+<x-button type="info">信息按钮</x-button>
+<x-button type="warning">警告按钮</x-button>
+<x-button type="danger">危险按钮</x-button>
 :::
