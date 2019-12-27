@@ -1,5 +1,13 @@
 <template>
-  <button class="x-button" :class="`x-button--${type}`">
+  <button
+    class="x-button"
+    :class="[
+      `x-button--${type}`,
+      {
+        'is-plain': plain
+      }
+    ]"
+  >
     <span v-if="!$slots.default">{{ text }}</span>
     <slot />
   </button>
@@ -17,6 +25,10 @@ export default {
         ['default', 'primary', 'success', 'info', 'warning', 'danger'].indexOf(
           value
         ) !== -1
+    },
+    plain: {
+      type: Boolean,
+      default: false
     }
   }
 }

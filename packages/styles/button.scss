@@ -29,23 +29,34 @@
     border-color: rgba($primaryColor, 0.2);
   }
 
+  &.is-plain:hover {
+    color: $primaryColor;
+    border-color: $primaryColor;
+    background-color: #fff;
+  }
+
   &--primary {
     @include button($primaryColor);
+    @include is-plain($primaryColor);
   }
 
   &--success {
     @include button($successColor);
+    @include is-plain($successColor);
   }
 
   &--info {
     @include button($infoColor);
+    @include is-plain($infoColor);
   }
 
   &--warning {
     @include button($warningColor);
+    @include is-plain($warningColor);
   }
 
   &--danger {
     @include button($dangerColor);
+    @include is-plain($dangerColor);
   }
 }

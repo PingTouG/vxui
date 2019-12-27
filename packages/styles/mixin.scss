@@ -9,3 +9,17 @@
     border-color: transparent;
   }
 }
+
+@mixin is-plain($color) {
+  &.is-plain {
+    color: $color;
+    background-color: rgba($color, 0.1);
+    border-color: rgba($color, 0.2);
+
+    &:hover {
+      color: #fff;
+      border-color: transparent;
+      background-color: $color;
+    }
+  }
+}
