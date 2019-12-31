@@ -12,6 +12,8 @@
       }
     ]"
     :type="nativeType"
+    :disabled="disabled || loading"
+    @click="handleClick"
   >
     <span class="x-button-loading" v-if="loading" />
     <x-icon :name="icon" v-if="icon" />
@@ -68,6 +70,11 @@ export default {
   },
   components: {
     XIcon
+  },
+  methods: {
+    handleClick(e) {
+      this.$emit('click', e)
+    }
   }
 }
 </script>
