@@ -2,8 +2,8 @@
   <button
     class="x-button"
     :class="[
-      `x-button--${type}`,
-      `x-button--${size}`,
+      type? `x-button--${type}`:'',
+      size?`x-button--${size}`:'',
       {
         'is-plain': plain,
         'is-round': round,
@@ -11,7 +11,7 @@
         'is-disabled': disabled,
       }
     ]"
-    :native-type="nativeType"
+    :type="nativeType"
   >
     <span class="x-button-loading" v-if="loading" />
     <x-icon :name="icon" v-if="icon" />
@@ -31,17 +31,10 @@ export default {
     text: String,
     type: {
       type: String,
-      default: 'default',
       validator: value =>
-        [
-          'default',
-          'primary',
-          'success',
-          'info',
-          'warning',
-          'danger',
-          'text'
-        ].indexOf(value) !== -1
+        ['primary', 'success', 'info', 'warning', 'danger', 'text'].indexOf(
+          value
+        ) !== -1
     },
     plain: {
       type: Boolean,
@@ -55,10 +48,7 @@ export default {
       type: Boolean,
       default: false
     },
-    icon: {
-      type: String,
-      default: ''
-    },
+    icon: String,
     disabled: {
       type: Boolean,
       default: false
