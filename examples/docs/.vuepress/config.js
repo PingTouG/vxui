@@ -31,7 +31,10 @@ module.exports = {
           {
             title: 'Basic',
             collapsable: false,
-            children: [['/components/button', 'Button 按钮']]
+            children: [
+              ['/components/icon', 'Icon 图标'],
+              ['/components/button', 'Button 按钮']
+            ]
           }
         ]
       }
