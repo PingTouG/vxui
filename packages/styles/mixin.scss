@@ -23,3 +23,29 @@
     }
   }
 }
+
+@mixin is-circle {
+  &.is-circle {
+    border-radius: 50%;
+    padding: 12px;
+  }
+}
+
+@mixin is-disabled($color) {
+  &.is-disabled {
+    cursor: not-allowed;
+    color: #fff;
+    background-color: rgba($color, 0.6);
+    border-color: rgba($color, 0);
+
+    &:hover {
+      color: #fff;
+      background-color: rgba($color, 0.6);
+      border-color: rgba($color, 0);
+    }
+  }
+}
+
+@mixin button-size($paddingBoth: 12px, $paddingUpDown: 20px) {
+  padding: $paddingBoth $paddingUpDown;
+}

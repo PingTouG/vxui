@@ -3,18 +3,28 @@
     class="x-button"
     :class="[
       `x-button--${type}`,
+      `x-button--${size}`,
       {
         'is-plain': plain,
-        'is-round': round
+        'is-round': round,
+        'is-circle': circle,
+        'is-disabled': disabled,
       }
     ]"
+    :native-type="nativeType"
   >
-    <span v-if="!$slots.default">{{ text }}</span>
-    <slot />
+    <span class="x-button-loading" v-if="loading" />
+    <x-icon :name="icon" v-if="icon" />
+    <template v-if="!circle">
+      <span class="x-button__text" v-if="!$slots.default">{{ text }}</span>
+      <slot />
+    </template>
   </button>
 </template>
 
 <script>
+import XIcon from '../../Icon'
+
 export default {
   name: 'XButton',
   props: {
@@ -23,9 +33,15 @@ export default {
       type: String,
       default: 'default',
       validator: value =>
-        ['default', 'primary', 'success', 'info', 'warning', 'danger'].indexOf(
-          value
-        ) !== -1
+        [
+          'default',
+          'primary',
+          'success',
+          'info',
+          'warning',
+          'danger',
+          'text'
+        ].indexOf(value) !== -1
     },
     plain: {
       type: Boolean,
@@ -34,7 +50,34 @@ export default {
     round: {
       type: Boolean,
       default: false
+    },
+    circle: {
+      type: Boolean,
+      default: false
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String,
+      validator: value => ['medium', 'small', 'mini'].indexOf(value) !== -1
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    nativeType: {
+      type: String,
+      default: 'button'
     }
+  },
+  components: {
+    XIcon
   }
 }
 </script>

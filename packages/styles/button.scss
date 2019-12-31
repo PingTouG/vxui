@@ -19,9 +19,13 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  padding: 12px 20px;
   font-size: 14px;
   border-radius: 4px;
+  @include button-size;
+
+  &__text {
+    vertical-align: text-top;
+  }
 
   &:hover {
     color: $primaryColor;
@@ -35,32 +39,117 @@
     background-color: #fff;
   }
 
+  &.is-disabled {
+    color: #c0c4cc;
+    cursor: not-allowed;
+    background-image: none;
+    background-color: #fff;
+    border-color: #ebeef5;
+
+    &:hover {
+      color: #c0c4cc;
+      background-color: #fff;
+      border-color: #ebeef5;
+    }
+  }
+
   &.is-round {
     border-radius: 20px;
   }
 
+  @include is-circle();
+
   &--primary {
     @include button($primaryColor);
     @include is-plain($primaryColor);
+    @include is-disabled($primaryColor);
   }
 
   &--success {
     @include button($successColor);
     @include is-plain($successColor);
+    @include is-disabled($successColor);
   }
 
   &--info {
     @include button($infoColor);
     @include is-plain($infoColor);
+    @include is-disabled($infoColor);
   }
 
   &--warning {
     @include button($warningColor);
     @include is-plain($warningColor);
+    @include is-disabled($warningColor);
   }
 
   &--danger {
     @include button($dangerColor);
     @include is-plain($dangerColor);
+    @include is-disabled($dangerColor);
+  }
+
+  &--text {
+    color: $primaryColor;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover {
+      color: $primaryColor;
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      color: #c0c4cc;
+      background-color: transparent;
+      border-color: transparent;
+
+      &:hover {
+        color: #c0c4cc;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+
+  &-loading {
+    animation: rotating 2s linear infinite;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-right: 0.5em;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      vertical-align: -10%;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 30%, 0% 30%);
+      animation: rotating 1s linear infinite;
+    }
+  }
+
+  &--medium {
+    @include button-size(10px);
+  }
+
+  &--small {
+    @include button-size(9px, 15px);
+  }
+
+  &--mini {
+    @include button-size(7px, 15px);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
   }
 }
