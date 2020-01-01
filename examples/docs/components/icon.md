@@ -6,14 +6,14 @@
 
 <p>
   <x-icon name="search" />
-  <x-icon name="set" />
+  <x-icon name="settings" />
   <x-icon name="seleted" />
 </p>
 
 ```vue
 <p>
   <x-icon name="search" />
-  <x-icon name="set" />
+  <x-icon name="settings" />
   <x-icon name="seleted" />
 </p>
 ```
