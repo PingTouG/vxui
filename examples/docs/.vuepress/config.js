@@ -49,6 +49,7 @@ module.exports = {
         },
         demoCodeMark: 'demo'
       }
-    ]
+    ],
+    '@vuepress/back-to-top'
   ]
 }
