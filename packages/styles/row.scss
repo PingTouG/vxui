@@ -1,0 +1,36 @@
+.x-row {
+  position: relative;
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+  }
+
+  &::after {
+    clear: both;
+  }
+
+  &--flex {
+    display: flex;
+
+    @each $justify,
+      $value in ((end, flex-end), center, space-between, space-around)
+    {
+      &.is-justify-#{$justify} {
+        @if $value {
+          justify-content: $value;
+        } @else {
+          justify-content: $justify;
+        }
+      }
+    }
+
+    @each $align, $value in ((middle, center), (bottom, baseline)) {
+      &.is-align-#{$align} {
+        align-items: $value;
+      }
+    }
+  }
+}

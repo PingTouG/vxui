@@ -1,0 +1,36 @@
+$width: 100%;
+$span: 24;
+$offset: $width / $span;
+
+.x-col {
+  width: $width;
+
+  @for $i from 1 through $span {
+    &-span-#{$i} {
+      width: $width / ($span / $i);
+    }
+  }
+
+  @for $i from 1 through $span + 1 {
+    &-offset-#{$i} {
+      margin-left: $offset * $i;
+    }
+  }
+
+  @each $deal in (push, pull) {
+    @for $i from 1 through $span + 1 {
+      &-#{$deal}-#{$i} {
+        @if $deal == pull {
+          margin-left: -#{$offset * $i};
+        } @else {
+          margin-left: $offset * $i;
+        }
+      }
+    }
+  }
+}
+
+[class*='x-col-'] {
+  float: left;
+  box-sizing: border-box;
+}
