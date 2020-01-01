@@ -301,6 +301,14 @@ module.exports = {
 
 ## examples 运行环境配置
 
+### 安装依赖
+
+- `url-loader`
+
+```
+yarn add -D url-loader
+```
+
 `webpack.dev.js`
 
 ```diff
@@ -321,6 +329,17 @@ devtool: 'source-map',
 +       '@': resolve('../examples/src'),
 +       '@v': resolve('../examples/src/views')
 +     }
++   },
++   module: {
++     rules: [
++       {
++         test: /\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(ttf)$/,
++         use: {
++           loader: 'url-loader'
++         },
++         exclude: /node_modules/
++       }
++     ]
 +   },
 +   plugins: [
 +     new HtmlWebpackPlugin({
