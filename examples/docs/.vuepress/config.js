@@ -25,6 +25,7 @@ module.exports = {
             title: 'Basic',
             collapsable: false,
             children: [
+              ['/components/layout', 'Layout 布局'],
               ['/components/icon', 'Icon 图标'],
               ['/components/button', 'Button 按钮']
             ]
