@@ -644,6 +644,29 @@ module.exports = {
 
 如果直接拿的 github 上的例子，会发现代码块无法完全隐藏，因为那个例子`minHeight: 200`，不知道作者的用意是什么，在此改成 0，并将`showText`，`hideText`改成了汉字，将在线打开的按钮全部关闭，设置`demoCodeMark: 'demo'`(默认也是 demo)。`demoCodeMark`是用来定义标识用例块的标识符(`::: demo 用例代码 :::`)。
 
+最后再调整一下显示代码条的样式
+`.vuepress\styles\index.styl`
+
+```css
+.control-btn {
+  border: 1px solid #eee;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.arrow-icon {
+  border-bottom-color: #ccc !important;
+}
+
+.control-btn:hover {
+  color: #000;
+}
+
+.control-btn:hover .arrow-icon {
+  border-bottom-color: #000 !important;
+}
+```
+
 使用
 
 ```
