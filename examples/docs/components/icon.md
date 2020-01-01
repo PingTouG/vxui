@@ -4,19 +4,11 @@
 
 ### 使用方法
 
-<p>
-  <x-icon name="search" />
-  <x-icon name="settings" />
-  <x-icon name="seleted" />
-</p>
-
-```vue
-<p>
-  <x-icon name="search" />
-  <x-icon name="settings" />
-  <x-icon name="seleted" />
-</p>
-```
+::: demo
+<x-icon name="search" />
+<x-icon name="settings" />
+<x-icon name="seleted" />
+:::
 
 ### 图标集合
 

@@ -2,14 +2,7 @@ module.exports = {
   title: 'VXUI',
   description: '基于Vue开发的组件库',
   base: '/',
-  head: [
-    ['link', { rel: 'icon', href: 'favicon.ico' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
-    [
-      'script',
-      { src: 'https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }
-    ]
-  ],
+  head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
   themeConfig: {
     nav: [
       { text: '指南', link: '/installation' },
@@ -40,5 +33,21 @@ module.exports = {
       }
     ],
     sidebarDepth: 0
-  }
+  },
+  plugins: [
+    [
+      'demo-code',
+      {
+        showText: '显示代码',
+        hideText: '隐藏代码',
+        minHeight: 0,
+        onlineBtns: {
+          codepen: false,
+          jsfiddle: false,
+          codesandbox: false
+        },
+        demoCodeMark: 'demo'
+      }
+    ]
+  ]
 }
