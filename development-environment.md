@@ -498,10 +498,10 @@ export default {}
 ### 安装依赖包
 
 - `vuepress`
-- `vuepress-plugin-demo-block`
+- `vuepress-plugin-demo-code`
 
 ```
-yarn add -D vuepress vuepress-plugin-demo-block
+yarn add -D vuepress vuepress-plugin-demo-code
 ```
 
 ### 配置简单介绍
@@ -516,6 +516,149 @@ vuepress 配置文件是在`.vuepress/config.js`(此文件名是固定的)。
 - head：额外的需要被注入到当前页面的 HTML <head> 中的标签
 - themeConfig：主题配置(nav：配置导航，sidebar：侧边栏)
 
+配置代码如下：
+
+```javascript
+module.exports = {
+  title: 'VXUI',
+  description: '基于Vue开发的组件库',
+  base: '/',
+  head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
+  themeConfig: {
+    nav: [
+      { text: '指南', link: '/installation' },
+      { text: 'GitHub', link: 'https://github.com/PingTouG/vxui' }
+    ],
+    sidebar: [
+      {
+        title: '开发指南',
+        collapsable: false,
+        children: [
+          ['/installation', '安装'],
+          ['/quickstart', '快速开始']
+        ]
+      },
+      {
+        title: '组件',
+        collapsable: false,
+        children: [
+          {
+            title: 'Basic',
+            collapsable: false,
+            children: [
+              ['/components/icon', 'Icon 图标'],
+              ['/components/button', 'Button 按钮']
+            ]
+          }
+        ]
+      }
+    ],
+    sidebarDepth: 0
+  }
+}
+```
+
+> 其中，需要用到图片，`.vuepress/public/`目录下用于存放静态文件，所以将`favicon.ico`、`logo.png`放在此目录下
+
+### 样式配置
+
+`.vuepress/styles/`目录下用于存放样式，若想更改默认主题颜色，则需要创建一个`palette.styl`文件，具体配置见官网：[传送门](https://vuepress.vuejs.org/zh/config/#palette-styl)。若想更改样式，则创建一个`index.styl`文件，此文件定义的样式具有比默认样式更高的优先级(会生成在最终的 CSS 文件结尾)
+
 #### 应用级配置
 
 通过`.vuepress/enhanceApp.js`来配置，可以在此文件中注入组件库用于写用例
+
+`.vuepress/enhanceApp.js`
+
+```javascript
+import VXUI from '../../../packages'
+
+export default ({ Vue }) => {
+  Vue.use(VXUI)
+}
+```
+
+#### 配置用例代码块
+
+现有的 demoBlock 插件我发现了两个，`vuepress-plugin-demo-block`,`vuepress-plugin-demo-code`，其中后者是参考前者写的。
+一开始用的是前者，但无法使用`packages`中的组件，所以放弃了，使用了后者，即：`vuepress-plugin-demo-code`[github](https://github.com/BuptStEve/vuepress-plugin-demo-code)。
+
+先安装此插件，上面我已经安装过了，在`.vuepress/config.js`添加如下代码
+
+```diff
+module.exports = {
+  title: 'VXUI',
+  description: '基于Vue开发的组件库',
+  base: '/',
+  head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
+  themeConfig: {
+    nav: [
+      { text: '指南', link: '/installation' },
+      { text: 'GitHub', link: 'https://github.com/PingTouG/vxui' }
+    ],
+    sidebar: [
+      {
+        title: '开发指南',
+        collapsable: false,
+        children: [
+          ['/installation', '安装'],
+          ['/quickstart', '快速开始']
+        ]
+      },
+      {
+        title: '组件',
+        collapsable: false,
+        children: [
+          {
+            title: 'Basic',
+            collapsable: false,
+            children: [
+              ['/components/icon', 'Icon 图标'],
+              ['/components/button', 'Button 按钮']
+            ]
+          }
+        ]
+      }
+    ],
+    sidebarDepth: 0
+  },
++  plugins: [
++    [
++      'demo-code',
++      {
++        showText: '显示代码',
++        hideText: '隐藏代码',
++        minHeight: 0,
++        onlineBtns: {
++          codepen: false,
++          jsfiddle: false,
++          codesandbox: false
++        },
++        demoCodeMark: 'demo'
++      }
++    ]
++  ]
+}
+
+```
+
+如果直接拿的 github 上的例子，会发现代码块无法完全隐藏，因为那个例子`minHeight: 200`，不知道作者的用意是什么，在此改成 0，并将`showText`，`hideText`改成了汉字，将在线打开的按钮全部关闭，设置`demoCodeMark: 'demo'`(默认也是 demo)。`demoCodeMark`是用来定义标识用例块的标识符(`::: demo 用例代码 :::`)。
+
+使用
+
+```
+::: demo
+<x-button @click="handleClick">默认按钮</x-button>
+
+<script>
+export default {
+  methods:{
+    handleClick(){
+      alert('测试')
+    }
+  }
+}
+</script>
+:::
+
+```
