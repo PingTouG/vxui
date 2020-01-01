@@ -109,8 +109,34 @@
 ::: demo
 
 <p>
-  <x-button type="primary" text="加载中" :loading="true"  />
+  <x-button type="primary" :text="btn.text" :loading="btn.loading" @click="handleClick"  />
 </p>
+
+<script>
+export default{
+  data(){
+    return {
+      btn:{
+        text:"点击",
+      loading: false
+
+      }
+    }
+  },
+  methods:{
+    handleClick(){
+      this.btn.loading = true
+      this.btn.text = '加载中'
+
+      setTimeout(()=>{
+        this.btn.loading = false
+        this.btn.text = '点击'
+      },3000)
+    }
+  }
+}
+</script>
+
 :::
 
 ### 不同尺寸
