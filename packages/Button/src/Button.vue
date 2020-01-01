@@ -8,7 +8,7 @@
         'is-plain': plain,
         'is-round': round,
         'is-circle': circle,
-        'is-disabled': disabled,
+        'is-disabled': disabled || loading,
       }
     ]"
     :type="nativeType"
