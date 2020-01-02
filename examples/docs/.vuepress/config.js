@@ -27,7 +27,8 @@ module.exports = {
             children: [
               ['/components/layout', 'Layout 布局'],
               ['/components/icon', 'Icon 图标'],
-              ['/components/button', 'Button 按钮']
+              ['/components/button', 'Button 按钮'],
+              ['/components/link', 'Link 文字链接']
             ]
           }
         ]
