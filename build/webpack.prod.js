@@ -1,8 +1,10 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const merge = require('webpack-merge')
 const base = require('./webpack.common')
-const { resolve, getPackageConfig } = require('./utils')
+const { resolve } = require('./utils')
 
-const packageName = getPackageConfig().name
+const packageName = 'vxui'
 
 module.exports = merge(base, {
   mode: 'production',
@@ -21,5 +23,15 @@ module.exports = merge(base, {
       commonjs2: 'vue',
       amd: 'vue'
     }
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin()
+    ]
   }
 })
