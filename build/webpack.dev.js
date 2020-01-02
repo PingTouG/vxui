@@ -16,17 +16,6 @@ module.exports = merge(base, {
       '@v': resolve('../examples/views')
     }
   },
-  module: {
-    rules: [
-      {
-        test: /\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(ttf)$/,
-        use: {
-          loader: 'url-loader'
-        },
-        exclude: /node_modules/
-      }
-    ]
-  },
   plugins: [
     new HtmlWebpackPlugin({
       title: packageName,
