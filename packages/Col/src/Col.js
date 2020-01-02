@@ -1,5 +1,3 @@
-import '../../styles/col.scss'
-
 export default {
   name: 'XCol',
   props: {
