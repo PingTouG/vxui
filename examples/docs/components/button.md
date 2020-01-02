@@ -118,8 +118,7 @@ export default{
     return {
       btn:{
         text:"点击",
-      loading: false
-
+        loading: false
       }
     }
   },
