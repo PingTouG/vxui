@@ -1,3 +1,6 @@
+$disabledDiaphaneity: 0.5;
+
+/* 按钮样式 */
 @mixin button($color) {
   color: #fff;
   background-color: $color;
@@ -10,6 +13,12 @@
   }
 }
 
+/* 按钮大小样式 */
+@mixin button-size($paddingBoth: 12px, $paddingUpDown: 20px) {
+  padding: $paddingBoth $paddingUpDown;
+}
+
+/* 朴素样式 */
 @mixin is-plain($color) {
   &.is-plain {
     color: $color;
@@ -24,28 +33,38 @@
   }
 }
 
+/* 不可用样式 */
+@mixin is-disabled($color, $type) {
+  &.is-disabled {
+    cursor: not-allowed;
+
+    @if $type == button {
+      color: #fff;
+      background-color: rgba($color, $disabledDiaphaneity);
+      border-color: rgba($color, 0);
+
+      &:hover {
+        color: #fff;
+        background-color: rgba($color, $disabledDiaphaneity);
+        border-color: rgba($color, 0);
+      }
+    } @else if $type == link {
+      color: rgba($color, $disabledDiaphaneity);
+
+      &:hover {
+        color: rgba($color, $disabledDiaphaneity);
+        text-decoration: none;
+      }
+    } @else {
+      @error "值#{$type} 不在$type取值范围内，$type 取值范围：[button,link]";
+    }
+  }
+}
+
+/* 圆形样式 */
 @mixin is-circle {
   &.is-circle {
     border-radius: 50%;
     padding: 12px;
   }
-}
-
-@mixin is-disabled($color) {
-  &.is-disabled {
-    cursor: not-allowed;
-    color: #fff;
-    background-color: rgba($color, 0.6);
-    border-color: rgba($color, 0);
-
-    &:hover {
-      color: #fff;
-      background-color: rgba($color, 0.6);
-      border-color: rgba($color, 0);
-    }
-  }
-}
-
-@mixin button-size($paddingBoth: 12px, $paddingUpDown: 20px) {
-  padding: $paddingBoth $paddingUpDown;
 }

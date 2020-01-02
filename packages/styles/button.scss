@@ -62,31 +62,31 @@
   &--primary {
     @include button($primaryColor);
     @include is-plain($primaryColor);
-    @include is-disabled($primaryColor);
+    @include is-disabled($primaryColor, button);
   }
 
   &--success {
     @include button($successColor);
     @include is-plain($successColor);
-    @include is-disabled($successColor);
+    @include is-disabled($successColor, button);
   }
 
   &--info {
     @include button($infoColor);
     @include is-plain($infoColor);
-    @include is-disabled($infoColor);
+    @include is-disabled($infoColor, button);
   }
 
   &--warning {
     @include button($warningColor);
     @include is-plain($warningColor);
-    @include is-disabled($warningColor);
+    @include is-disabled($warningColor, button);
   }
 
   &--danger {
     @include button($dangerColor);
     @include is-plain($dangerColor);
-    @include is-disabled($dangerColor);
+    @include is-disabled($dangerColor, button);
   }
 
   &--text {
