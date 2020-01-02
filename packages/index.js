@@ -1,22 +1,10 @@
-import Row from './Row'
-import Col from './Col'
-import Icon from './Icon'
-import Button from './Button'
-import Link from './Link'
+import autoImport from './utils/autoImport'
 
-const components = {
-  XRow: Row,
-  XCol: Col,
-  xIcon: Icon,
-  XButton: Button,
-  XLink: Link
-}
+const components = autoImport()
 
 const install = Vue => {
   for (const key in components) {
-    const component = components[key]
-
-    Vue.component(component.name, component)
+    Vue.component(key, components[key])
   }
 }
 
