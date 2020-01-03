@@ -5,4 +5,6 @@
   基于Vue开发的UI组件库
 </p>
 
-中文 | [英文](./README.md) | [开发环境](./development-environment.md)
+## 文档
+
+中文 | [英文](https://github.com/PingTouG/vxui/blob/master/README.md) | [开发环境](https://github.com/PingTouG/vxui/blob/master/development-environment.md)

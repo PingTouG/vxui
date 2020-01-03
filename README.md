@@ -5,4 +5,6 @@
   基于Vue开发的UI组件库
 </p>
 
-English | [Chinese](./README.zn-CN.md) | [development environment](./development-environment.md)
+## DOCS
+
+English | [Chinese](https://github.com/PingTouG/vxui/blob/master/README.zn-CN.md) | [development environment](https://github.com/PingTouG/vxui/blob/master/development-environment.md)
