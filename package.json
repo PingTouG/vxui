@@ -4,11 +4,12 @@
   "description": "基于Vue开发的UI组件库",
   "private": false,
   "main": "lib/vxui.js",
+  "homepage": "https://github.com/PingTouG/vxui-docs",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
     "docs:dev": "vuepress dev examples/docs",
-    "docs:build": "vuepress build examples/docs"
+    "docs:build": "vuepress build examples/docs && gh-pages -d docs"
   },
   "keywords": [
     "vue",
@@ -29,6 +30,7 @@
     "css-loader": "^3.4.0",
     "cssnano": "^4.1.10",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.0",
