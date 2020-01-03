@@ -1,6 +1,7 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const merge = require('webpack-merge')
 const base = require('./webpack.common')
 const { resolve } = require('./utils')
@@ -26,6 +27,29 @@ module.exports = merge(base, {
     }
   },
   optimization: {
+    // 分离到文件中，还存在问题，暂不分离
+    // splitChunks: {
+    //   cacheGroups: {
+    //     iconStyles: {
+    //       name: 'css/icon',
+    //       test: /\.css$/,
+    //       chunks: 'all',
+    //       enforce: true
+    //     },
+    //     rowStyles: {
+    //       name: 'css/row',
+    //       test: /row\.scss/,
+    //       chunks: 'all',
+    //       enforce: true
+    //     },
+    //     colStyles: {
+    //       name: 'css/col',
+    //       test: /col\.scss/,
+    //       chunks: 'all',
+    //       enforce: true
+    //     }
+    //   }
+    // },
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
@@ -41,9 +65,22 @@ module.exports = merge(base, {
       })
     ]
   },
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      }
+    ]
+  },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/vxui.css',
+      chunkFilename: '[name].css'
+    }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: resolve('../lib/**')
+      // cleanAfterEveryBuildPatterns: [resolve('../lib/*.js'), '!vxui.js']
     })
   ]
 })

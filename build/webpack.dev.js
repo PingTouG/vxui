@@ -14,6 +14,15 @@ module.exports = merge(base, {
       '@v': resolve('../examples/views')
     }
   },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: /node_moduels/
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'vxui',
