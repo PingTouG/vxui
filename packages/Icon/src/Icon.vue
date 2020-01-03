@@ -10,3 +10,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../assets/iconfont/iconfont.css';
+</style>

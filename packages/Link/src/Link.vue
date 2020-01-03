@@ -1,7 +1,11 @@
 <template>
   <a
     class="x-link"
-    :class="[`x-link--${type}`,{'is-disabled':disabled},{'is-underline':!underline}]"
+    :class="[
+      `x-link--${type}`,
+      { 'is-disabled': disabled },
+      { 'is-underline': !underline }
+    ]"
     :href="href"
     :target="target"
   >
@@ -43,3 +47,56 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.x-link {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: $defaultColor;
+
+  &:hover {
+    color: $primaryColor;
+  }
+
+  @include is-disabled($defaultColor, link);
+
+  &.is-underline,
+  &.is-underline:hover {
+    text-decoration: none;
+  }
+
+  @each $type,
+    $color
+      in (
+        (primary, $primaryColor),
+        (success, $successColor),
+        (warning, $warningColor),
+        (danger, $dangerColor),
+        (info, $infoColor)
+      )
+  {
+    &--#{$type} {
+      color: $color;
+
+      &:hover {
+        color: rgba($color, 0.8);
+      }
+
+      @include is-disabled($color, link);
+    }
+  }
+}
+</style>
