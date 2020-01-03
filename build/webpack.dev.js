@@ -1,9 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const base = require('./webpack.common')
-const { resolve, getPackageConfig } = require('./utils')
-
-const packageName = getPackageConfig().name
+const { resolve } = require('./utils')
 
 module.exports = merge(base, {
   mode: 'development',
@@ -18,7 +16,7 @@ module.exports = merge(base, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: packageName,
+      title: 'vxui',
       template: resolve('../index.html'),
       favicon: resolve('../favicon.ico')
     })
