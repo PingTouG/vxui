@@ -31,7 +31,13 @@ module.exports = merge(base, {
         parallel: true,
         sourceMap: true
       }),
-      new OptimizeCSSAssetsPlugin()
+      new OptimizeCSSAssetsPlugin({
+        cssProcessor: require('cssnano'),
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }]
+        },
+        canPrint: true
+      })
     ]
   }
 })
