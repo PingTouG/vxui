@@ -1,5 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const merge = require('webpack-merge')
 const base = require('./webpack.common')
 const { resolve } = require('./utils')
@@ -39,5 +40,10 @@ module.exports = merge(base, {
         canPrint: true
       })
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: resolve('../lib/**')
+    })
+  ]
 })
