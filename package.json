@@ -1,6 +1,6 @@
 {
   "name": "@pingtoug/vxui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "基于Vue开发的UI组件库",
   "private": false,
   "main": "lib/vxui.js",
