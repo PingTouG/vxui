@@ -102,6 +102,25 @@
 </p>
 :::
 
+### 按钮组
+
+> 以按钮组的方式出现，常用于多项类似操作
+
+::: demo
+
+<x-button-group>
+  <x-button icon="arrow-left" type="primary">上一页</x-button>
+  <x-button type="primary"> 下一页 <x-icon name="arrow-right" /></x-button>
+</x-button-group>
+
+<x-button-group>
+  <x-button icon="add" type="primary"  />
+  <x-button icon="data" type="primary"  />
+  <x-button icon="search" type="primary"  />
+</x-button-group>
+
+:::
+
 ### 加载中
 
 > 点击按钮后进行数据加载操作，在按钮上显示加载状态
