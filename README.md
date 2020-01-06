@@ -11,19 +11,18 @@ English | [中文](https://github.com/PingTouG/vxui/blob/master/README.zn-CN.md)
 
 ```
 npm i @pingtoug/vxui
-或
+// or
 yarn add @pingtoug/vxui
 ```
 
 ## Quick Start
 
 ```javascript
-// 引入样式
+// import styles
 import '@pingtoug/vxui/lib/css/vxui.css'
 
 import VXUI from '@pingtoug/vxui'
 Vue.use(VXUI)
-
 // or
 import { XButton } from '@pingtoug/vxui'
 Vue.use(XButton)

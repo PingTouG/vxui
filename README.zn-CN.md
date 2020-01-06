@@ -23,7 +23,7 @@ import '@pingtoug/vxui/lib/css/vxui.css'
 
 import VXUI from '@pingtoug/vxui'
 Vue.use(VXUI)
-// or
+// 或者
 import { XButton } from '@pingtoug/vxui'
 Vue.use(XButton)
 ```
