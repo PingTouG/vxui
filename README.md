@@ -9,7 +9,7 @@ English | [中文](https://github.com/PingTouG/vxui/blob/master/README.zn-CN.md)
 
 ## Install
 
-```
+```shell
 npm i @pingtoug/vxui
 // or
 yarn add @pingtoug/vxui
