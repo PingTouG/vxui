@@ -5,6 +5,30 @@
   基于Vue开发的UI组件库
 </p>
 
+English | [中文](https://github.com/PingTouG/vxui/blob/master/README.zn-CN.md) | [UI 库开发环境搭建文档](https://github.com/PingTouG/vxui/blob/master/development-environment.md)
+
+## Install
+
+```
+npm i @pingtoug/vxui
+或
+yarn add @pingtoug/vxui
+```
+
+## Quick Start
+
+```javascript
+import VXUI from '@pingtoug/vxui'
+// 引入样式
+import '@pingtoug/vxui/lib/css/vxui.css'
+
+Vue.use(VXUI)
+```
+
 ## DOCS
 
-English | [Chinese](https://github.com/PingTouG/vxui/blob/master/README.zn-CN.md) | [development environment](https://github.com/PingTouG/vxui/blob/master/development-environment.md)
+[中文](https://pingtoug.github.io/vxui)
+
+## LICENSE
+
+[MIT](https://github.com/PingTouG/vxui/blob/master/LICENSE.md)
