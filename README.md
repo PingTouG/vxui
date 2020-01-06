@@ -28,8 +28,6 @@ import { XButton } from '@pingtoug/vxui'
 Vue.use(XButton)
 ```
 
-> 按需引入组件，但样式还是需要全部引入，目前无法做到样式按需引入
-
 ## DOCS
 
 [中文](https://pingtoug.github.io/vxui)
