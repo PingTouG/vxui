@@ -4,7 +4,7 @@ module.exports = async () => {
   return {
     title: 'VXUI',
     description: '基于Vue开发的组件库',
-    base: '/',
+    base: '/vxui/',
     dest: 'docs',
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
     themeConfig: {
