@@ -8,7 +8,8 @@
         'is-plain': plain,
         'is-round': round,
         'is-circle': circle,
-        'is-disabled': disabled || loading
+        'is-disabled': disabled || loading,
+        'is-block': block,
       }
     ]"
     :type="nativeType"
@@ -66,6 +67,10 @@ export default {
     nativeType: {
       type: String,
       default: 'button'
+    },
+    block: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -137,6 +142,10 @@ export default {
 
   &.is-round {
     border-radius: 20px;
+  }
+
+  &.is-block {
+    width: 100%;
   }
 
   @include is-circle();
