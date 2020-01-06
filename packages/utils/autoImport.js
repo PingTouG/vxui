@@ -2,7 +2,7 @@ export default () => {
   const requireComponent = require.context(
     '../',
     true,
-    /^.\/[A-Z]{1}[a-z]+\/index\.js$/
+    /^.\/[A-Z]{1}\w+\/index\.js$/
   )
 
   const components = {}
