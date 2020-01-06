@@ -18,12 +18,18 @@ yarn add @pingtoug/vxui
 ## Quick Start
 
 ```javascript
-import VXUI from '@pingtoug/vxui'
 // 引入样式
 import '@pingtoug/vxui/lib/css/vxui.css'
 
+import VXUI from '@pingtoug/vxui'
 Vue.use(VXUI)
+
+// or
+import { XButton } from '@pingtoug/vxui'
+Vue.use(XButton)
 ```
+
+> 按需引入组件，但样式还是需要全部引入，目前无法做到样式按需引入
 
 ## DOCS
 

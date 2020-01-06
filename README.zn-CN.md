@@ -18,11 +18,14 @@ yarn add @pingtoug/vxui
 ## 快速开始
 
 ```javascript
-import VXUI from '@pingtoug/vxui'
 // 引入样式
 import '@pingtoug/vxui/lib/css/vxui.css'
 
+import VXUI from '@pingtoug/vxui'
 Vue.use(VXUI)
+// or
+import { XButton } from '@pingtoug/vxui'
+Vue.use(XButton)
 ```
 
 ## 文档
