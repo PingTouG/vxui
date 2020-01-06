@@ -704,3 +704,77 @@ export default {
 :::
 
 ```
+
+### 发布并托管 GitHub
+
+#### 安装依赖
+
+- `gh-pages`
+
+```
+yarn add -D gh-pages
+```
+
+#### 配置 gh-pages
+
+`package.json`
+
+```diff
+{
+  "name": "@pingtoug/vxui",
+  "version": "0.0.4",
+  "description": "基于Vue开发的UI组件库",
+  "private": false,
+  "main": "lib/vxui.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
+    "docs:dev": "vuepress dev examples/docs",
+-    "docs:build": "vuepress build examples/docs"
++    "docs:build": "vuepress build examples/docs && gh-pages -d docs"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": "PingTouG <2798874773@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@vuepress/plugin-back-to-top": "^1.2.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.4.0",
+    "cssnano": "^4.1.10",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "gh-pages": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^3.0.0",
+    "vue-loader": "^15.8.3",
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-demo-code": "^0.5.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
+}
+
+```
+
+> 执行`yarn docs:build`，成功之后会在 GitHub 上创建一个分支`gh-pages`，然后在此项目的`Settgings`中找到`GitHub Pages`，在此选项中会出现部署的静态网站地址：`Your site is published at https://pingtoug.github.io/vxui/`

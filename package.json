@@ -4,7 +4,6 @@
   "description": "基于Vue开发的UI组件库",
   "private": false,
   "main": "lib/vxui.js",
-  "homepage": "https://github.com/PingTouG/vxui-docs",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
