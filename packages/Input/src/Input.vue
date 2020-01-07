@@ -103,16 +103,18 @@ export default {
   },
   methods: {
     handleInput(e) {
-      this.vModel = e.target.value
-      this.$emit('input', this.vModel)
+      this.changeValue(e.target.value)
     },
     handleClear() {
-      this.vModel = ''
-      this.$emit('input', this.vModel)
+      this.changeValue('')
     },
     handleToggleShowPassword() {
       this.isShowPassowrd = !this.isShowPassowrd
       this.nativeType = this.isShowPassowrd ? 'text' : 'password'
+    },
+    changeValue(value) {
+      this.vModel = value
+      this.$emit('input', value)
     }
   }
 }
@@ -183,6 +185,7 @@ $height: 40px;
       font-size: 16px;
       pointer-events: all;
       line-height: 2.5;
+      user-select: none;
 
       &:hover {
         cursor: pointer;
