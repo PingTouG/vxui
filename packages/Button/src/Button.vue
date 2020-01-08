@@ -17,7 +17,7 @@
     @click="handleClick"
   >
     <span class="x-button-loading" v-if="loading" />
-    <x-icon :name="icon" v-if="icon" />
+    <i :class="`iconfont icon-${icon}`" v-if="icon" />
     <template v-if="!circle">
       <span class="x-button__text" v-if="!$slots.default">{{ text }}</span>
       <slot />
@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import XIcon from '../../Icon'
-
 export default {
   name: 'XButton',
   props: {
@@ -72,9 +70,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  components: {
-    XIcon
   },
   methods: {
     handleClick(e) {
