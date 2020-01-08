@@ -1,4 +1,4 @@
-$disabledDiaphaneity: 0.5;
+@import './variables';
 
 /* 按钮样式 */
 @mixin button($color) {
@@ -66,5 +66,85 @@ $disabledDiaphaneity: 0.5;
   &.is-circle {
     border-radius: 50%;
     padding: 12px;
+  }
+}
+
+/* 输入框样式 */
+
+@mixin input($height, $padding, $type: input) {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+
+  &__inner {
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: inherit;
+    height: $height;
+    line-height: $height;
+    outline: none;
+    padding: $padding;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 100%;
+
+    &::-webkit-input-placeholder {
+      color: rgba($infoColor, 0.5);
+    }
+
+    &::-moz-placeholder {
+      color: rgba($infoColor, 0.5);
+    }
+
+    &:-ms-input-placeholder {
+      color: rgba($infoColor, 0.5);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primaryColor;
+    }
+  }
+
+  &.is-disabled &__inner {
+    background-color: #f5f7fa;
+    border-color: #e4e7ed;
+    color: #c0c4cc;
+    cursor: not-allowed;
+  }
+
+  &__suffix {
+    position: absolute;
+    text-align: center;
+    color: rgba($infoColor, 0.5);
+    transition: all 0.3s;
+    pointer-events: none;
+
+    @if $type == input {
+      height: 100%;
+      right: 5px;
+      top: 0;
+    }
+
+    @if $type == textarea {
+      right: 15px;
+      bottom: -5px;
+    }
+
+    &-inner {
+      font-size: 16px;
+      pointer-events: all;
+      line-height: 2.5;
+      user-select: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
