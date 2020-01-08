@@ -19,7 +19,7 @@
 ::: demo
 
 <p class="x-demo">
-  <x-input placeholder="请输入内容" v-model="value"/>
+  <x-input placeholder="请输入内容" v-model="value" />
   <div>输入内容：{{value}}</div>
 </p>
 
@@ -71,6 +71,22 @@ export default {
 
 :::
 
+### 带`icon`的输入框
+
+> 带有图标标记输入类型
+
+::: demo
+
+<p class="x-demo">
+  <x-input placeholder="请输入内容" prefix-icon="search" />
+</p>
+
+<p class="x-demo">
+  <x-input placeholder="请输入内容" suffix-icon="clock" />
+</p>
+
+:::
+
 ### 文本域
 
 ::: demo
@@ -91,6 +107,23 @@ export default {
 
 <p>
   <x-input type="textarea" placeholder="请输入内容" :maxlength="100" show-word-limit/>
+</p>
+
+:::
+
+### 尺寸
+
+> 可通过`size`属性指定输入框的尺寸，除了默认的大小外，还提供了`medium`、`small`和`mini`三种尺寸。
+
+::: demo
+
+<p>
+  <x-row :gutter="20">
+    <x-col :span="6"><x-input placeholder="请输入内容" /></x-col>
+    <x-col :span="6"><x-input placeholder="请输入内容" size="medium"/></x-col>
+    <x-col :span="6"><x-input placeholder="请输入内容" size="small"/></x-col>
+    <x-col :span="6"><x-input placeholder="请输入内容" size="mini"/></x-col>
+  </x-row>
 </p>
 
 :::
