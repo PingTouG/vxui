@@ -71,11 +71,20 @@
 
 /* 输入框样式 */
 
-@mixin input($height, $padding, $type: input) {
+@mixin input(
+  $height,
+  $paddingTop: 0,
+  $paddingRight: 0,
+  $paddingBottom: $paddingTop,
+  $paddingLeft: $paddingRight,
+  $type: input
+) {
   position: relative;
   font-size: 14px;
   display: inline-block;
   width: 100%;
+
+  $left: 5px;
 
   &__inner {
     -webkit-appearance: none;
@@ -89,7 +98,7 @@
     height: $height;
     line-height: $height;
     outline: none;
-    padding: $padding;
+    padding: $paddingTop $paddingRight $paddingBottom $paddingLeft;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     width: 100%;
 
@@ -118,23 +127,13 @@
     cursor: not-allowed;
   }
 
-  &__suffix {
+  &__suffix,
+  &__prefix {
     position: absolute;
     text-align: center;
     color: rgba($infoColor, 0.5);
     transition: all 0.3s;
     pointer-events: none;
-
-    @if $type == input {
-      height: 100%;
-      right: 5px;
-      top: 0;
-    }
-
-    @if $type == textarea {
-      right: 15px;
-      bottom: -5px;
-    }
 
     &-inner {
       font-size: 16px;
@@ -147,4 +146,32 @@
       }
     }
   }
+
+  &__suffix {
+    @if $type == input {
+      height: 100%;
+      right: 5px;
+      top: 0;
+    }
+
+    @if $type == textarea {
+      right: 15px;
+      bottom: -5px;
+    }
+  }
+
+  &__prefix {
+    height: 100%;
+    left: $left;
+    top: 0;
+  }
+
+  &--prefix &__inner {
+    padding-left: $paddingRight + $left * 2;
+  }
+}
+
+@mixin input-size($height) {
+  height: $height;
+  line-height: $height;
 }

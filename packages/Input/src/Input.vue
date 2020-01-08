@@ -32,11 +32,16 @@
   </div>
   <div
     class="x-input"
-    :class="[{ 'is-disabled': disabled }, { 'x-input--suffix': isRenderSuffix }]"
+    :class="[{ 'is-disabled': disabled },{ 'x-input--prefix': isRenderPrefix },`${size ? `x-input--${size}` : ''}`]"
     @mouseenter="focused = true"
     @mouseleave="focused = false"
     v-else
   >
+    <span class="x-input__prefix" v-if="isRenderPrefix">
+      <span class="x-input__prefix-inner">
+        <i :class="`iconfont icon-${prefixIcon} x-input__prefix-icon`" />
+      </span>
+    </span>
     <input
       class="x-input__inner"
       :style="suffixInnerPaddingRight"
@@ -77,6 +82,7 @@
           <span class="x-input__count-now">{{vModel.length}}</span>
           <span class="x-input__count-max" v-if="maxlength">/ {{maxlength}}</span>
         </span>
+        <i :class="`iconfont icon-${suffixIcon} x-input__suffix-icon`" v-if="suffixIcon" />
       </span>
     </span>
   </div>
@@ -129,7 +135,9 @@ export default {
     readonly: {
       type: Boolean,
       default: false
-    }
+    },
+    suffixIcon: String,
+    prefixIcon: String
   },
   data() {
     return {
@@ -143,10 +151,19 @@ export default {
   },
   computed: {
     isRenderSuffix() {
-      return this.clearable || this.showPassword || this.showWordLimit
+      return (
+        !this.disabled &&
+        (this.clearable ||
+          this.showPassword ||
+          this.showWordLimit ||
+          this.suffixIcon)
+      )
+    },
+    isRenderPrefix() {
+      return this.prefixIcon && this.type === 'text'
     },
     isShowSuffix() {
-      return this.focused || this.hovering
+      return this.suffixIcon || this.focused || this.hovering
     },
     isShowShowPasswordIcon() {
       return this.type === 'password' && this.isShowPassowrd
@@ -172,6 +189,10 @@ export default {
 
       if (this.vModel.length > 99) {
         right += 5
+      }
+
+      if (this.suffixIcon) {
+        right += 20
       }
 
       return {
@@ -214,10 +235,22 @@ export default {
 $height: 40px;
 
 .x-input {
-  @include input(40px, 0 15px);
+  @include input(40px, 0, 15px);
+
+  &--medium &__inner {
+    @include input-size(#{$height - 4});
+  }
+
+  &--small &__inner {
+    @include input-size(#{$height - 4 * 2});
+  }
+
+  &--mini &__inner {
+    @include input-size(#{$height - 4 * 3});
+  }
 }
 
 .x-textarea {
-  @include input(auto, 5px 5px 15px 5px, textarea);
+  @include input(auto, 5px, 5px, 15px, 5px, textarea);
 }
 </style>
