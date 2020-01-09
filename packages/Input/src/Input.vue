@@ -1,6 +1,7 @@
 <template>
   <div
     class="x-textarea"
+    :class="[{ 'is-disabled': disabled }]"
     v-if="type === 'textarea'"
     @mouseenter="focused = true"
     @mouseleave="focused = false"
@@ -8,31 +9,26 @@
     <textarea
       class="x-textarea__inner"
       ref="textarea"
-      :name="name"
+      v-bind="$attrs"
       :value="vModel"
-      :rows="rows"
-      :maxlength="maxlength"
-      :minlength="minlength"
-      :placeholder="placeholder"
-      :disabled="disabled"
       :autocomplete="autocomplete"
-      :readonly="readonly"
+      :disabled="disabled"
       @input="handleInput"
-      @focus="hovering = true"
-      @blur="hovering = false"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
     <span class="x-textarea__suffix" v-if="isRenderSuffix">
       <span class="x-textarea__suffix-inner" v-show="isShowSuffix">
-        <span class="x-textareat__count" v-if="showWordLimit && maxlength">
+        <span class="x-textareat__count" v-if="showWordLimit && $attrs.maxlength">
           <span class="x-textarea__count-now">{{vModel.length}}</span>
-          <span class="x-textarea__count-max" v-if="maxlength">/ {{maxlength}}</span>
+          <span class="x-textarea__count-max" v-if="$attrs.maxlength">/ {{$attrs.maxlength}}</span>
         </span>
       </span>
     </span>
   </div>
   <div
     class="x-input"
-    :class="[{ 'is-disabled': disabled },{ 'x-input--prefix': isRenderPrefix },`${size ? `x-input--${size}` : ''}`]"
+    :class="[{ 'is-disabled': disabled },{ 'x-input--prefix': isRenderPrefix },size ? `x-input--${size}` : '']"
     @mouseenter="focused = true"
     @mouseleave="focused = false"
     v-else
@@ -44,19 +40,15 @@
     </span>
     <input
       class="x-input__inner"
+      v-bind="$attrs"
       :style="suffixInnerPaddingRight"
       :type="nativeType"
-      :name="name"
       :value="vModel"
-      :maxlength="maxlength"
-      :minlength="minlength"
-      :placeholder="placeholder"
-      :disabled="disabled"
       :autocomplete="autocomplete"
-      :readonly="readonly"
+      :disabled="disabled"
       @input="handleInput"
-      @focus="hovering = true"
-      @blur="hovering = false"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
     <span class="x-input__suffix" v-if="isRenderSuffix">
       <span class="x-input__suffix-inner" v-show="isShowSuffix">
@@ -78,9 +70,9 @@
           v-show="!isShowShowPasswordIcon"
           @click="handleToggleShowPassword"
         />
-        <span class="x-input__count" v-if="showWordLimit && maxlength">
+        <span class="x-input__count" v-if="showWordLimit && $attrs.maxlength">
           <span class="x-input__count-now">{{vModel.length}}</span>
-          <span class="x-input__count-max" v-if="maxlength">/ {{maxlength}}</span>
+          <span class="x-input__count-max" v-if="$attrs.maxlength">/ {{$attrs.maxlength}}</span>
         </span>
         <i :class="`iconfont icon-${suffixIcon} x-input__suffix-icon`" v-if="suffixIcon" />
       </span>
@@ -99,9 +91,6 @@ export default {
       default: 'text'
     },
     value: [String, Number],
-    maxlength: Number,
-    minlength: Number,
-    placeholder: String,
     clearable: {
       type: Boolean,
       default: false
@@ -110,31 +99,19 @@ export default {
       type: Boolean,
       default: false
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     showWordLimit: {
       type: Boolean,
       default: false
-    },
-    rows: {
-      type: Number,
-      default: 3
     },
     size: {
       type: String,
       validator: value => ['medium', 'small', 'mini'].indexOf(value) !== -1
     },
+    disabled: Boolean,
     autocomplete: {
       type: String,
       default: 'off',
       validator: value => ['on', 'off'].indexOf(value) !== -1
-    },
-    name: String,
-    readonly: {
-      type: Boolean,
-      default: false
     },
     suffixIcon: String,
     prefixIcon: String
@@ -183,7 +160,7 @@ export default {
         right += 50
       }
 
-      if (this.maxlength > 99) {
+      if (this.$attrs.maxlength > 99) {
         right += 15
       }
 
@@ -213,6 +190,14 @@ export default {
     handleToggleShowPassword() {
       this.isShowPassowrd = !this.isShowPassowrd
       this.nativeType = this.isShowPassowrd ? 'text' : 'password'
+    },
+    handleFocus() {
+      this.hovering = true
+      this.$emit('focus')
+    },
+    handleBlur() {
+      this.hovering = false
+      this.$emit('blur')
     },
     changeValue(value) {
       this.vModel = value
