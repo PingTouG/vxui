@@ -16,6 +16,7 @@
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
+      @change="handleChange"
     />
     <span class="x-textarea__suffix" v-if="isRenderSuffix">
       <span class="x-textarea__suffix-inner" v-show="isShowSuffix">
@@ -49,6 +50,7 @@
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
+      @change="handleChange"
     />
     <span class="x-input__suffix" v-if="isRenderSuffix">
       <span class="x-input__suffix-inner" v-show="isShowSuffix">
@@ -182,10 +184,16 @@ export default {
       if (this.autoScrollTop) {
         this.autoScrollTop()
       }
-      this.changeValue(e.target.value)
+      this.vModel = e.target.value
+      this.$emit('input', e.target.value)
+    },
+    handleChange(e) {
+      this.$emit('change', e.target.value)
     },
     handleClear() {
-      this.changeValue('')
+      this.vModel = ''
+      this.$emit('input', '')
+      this.$emit('clear')
     },
     handleToggleShowPassword() {
       this.isShowPassowrd = !this.isShowPassowrd
@@ -198,10 +206,6 @@ export default {
     handleBlur() {
       this.hovering = false
       this.$emit('blur')
-    },
-    changeValue(value) {
-      this.vModel = value
-      this.$emit('input', value)
     }
   },
   created() {
