@@ -85,7 +85,7 @@ const base = require('./webpack.common')
 module.exports = merge(base, {
   mode: 'development',
   // 开启sourceMap
-  devtool: 'source-map'
+  devtool: 'source-map',
 })
 ```
 
@@ -96,7 +96,7 @@ const merge = require('webpack-merge')
 const base = require('./webpack.common')
 
 module.exports = merge(base, {
-  mode: 'production'
+  mode: 'production',
 })
 ```
 
@@ -287,7 +287,7 @@ module.exports = {
 ```javascript
 const path = require('path')
 
-const resolve = dir => path.join(__dirname, dir)
+const resolve = (dir) => path.join(__dirname, dir)
 
 const getPackageConfig = () => {
   return require(resolve('../package.json'))
@@ -295,7 +295,7 @@ const getPackageConfig = () => {
 
 module.exports = {
   resolve,
-  getPackageConfig
+  getPackageConfig,
 }
 ```
 
@@ -366,7 +366,7 @@ import Vue from 'vue'
 import App from '@/App'
 
 new Vue({
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#root')
 ```
 
@@ -395,34 +395,85 @@ export default {}
 
 ## 打包配置
 
+### 安装依赖
+
+- `uglifyjs-webpack-plugin`
+- `optimize-css-assets-webpack-plugin`
+- `clean-webpack-plugin`
+- `mini-css-extract-plugin`
+
+```
+yarn add -D uglifyjs-webpack-plugin optimize-css-assets-webpack-plugin clean-webpack-plugin mini-css-extract-plugin
+```
+
 `webpack.pord.js`
 
 ```diff
 const merge = require('webpack-merge')
 const base = require('./webpack.common')
++ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
++ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
++ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
++ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
++ const { resolve } = require('./utils')
+
+const packageName = 'vxui'
 + const { resolve, getPackageConfig } = require('./utils')
 +
 + const packageName = getPackageConfig().name
 +
 module.exports = merge(base, {
 mode: 'production',
-+   entry: resolve('../packages/index.js'),
-+   output: {
-+     path: resolve('../lib'),
-+     filename: `${packageName}.js`,
-+     library: packageName,
-+     libraryExport: 'default',
-+     libraryTarget: 'umd'
-+   },
-+   externals: {
-+     vue: {
-+       root: 'Vue',
-+       commonjs: 'vue',
-+       commonjs2: 'vue',
-+       amd: 'vue'
-+     }
-+   }
-})
++  entry: resolve('../packages/index.js'),
++  output: {
++    path: resolve('../lib'),
++    filename: `${packageName}.js`,
++    library: packageName,
++    libraryExport: 'default',
++    libraryTarget: 'umd'
++  },
++  externals: {
++    vue: {
++      root: 'Vue',
++      commonjs: 'vue',
++      commonjs2: 'vue',
++      amd: 'vue'
++    }
++  },
++  optimization: {
++    minimizer: [
++      new UglifyJsPlugin({
++        cache: true,
++        parallel: true,
++        sourceMap: true
++      }),
++      new OptimizeCSSAssetsPlugin({
++        cssProcessor: require('cssnano'),
++        cssProcessorPluginOptions: {
++          preset: ['default', { discardComments: { removeAll: true } }]
++        },
++        canPrint: true
++      })
++    ]
++  },
++  module: {
++    rules: [
++      {
++        test: /\.(sa|sc|c)ss$/,
++        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
++      }
++    ]
++  },
++  plugins: [
++    new MiniCssExtractPlugin({
++      filename: 'css/vxui.css',
++      chunkFilename: '[name].css'
++    }),
++    new CleanWebpackPlugin({
++      cleanOnceBeforeBuildPatterns: resolve('../lib/**')
++    })
++  ]
++})
 
 ```
 
@@ -546,7 +597,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '指南', link: '/installation' },
-      { text: 'GitHub', link: 'https://github.com/PingTouG/vxui' }
+      { text: 'GitHub', link: 'https://github.com/PingTouG/vxui' },
     ],
     sidebar: [
       {
@@ -554,8 +605,8 @@ module.exports = {
         collapsable: false,
         children: [
           ['/installation', '安装'],
-          ['/quickstart', '快速开始']
-        ]
+          ['/quickstart', '快速开始'],
+        ],
       },
       {
         title: '组件',
@@ -566,14 +617,14 @@ module.exports = {
             collapsable: false,
             children: [
               ['/components/icon', 'Icon 图标'],
-              ['/components/button', 'Button 按钮']
-            ]
-          }
-        ]
-      }
+              ['/components/button', 'Button 按钮'],
+            ],
+          },
+        ],
+      },
     ],
-    sidebarDepth: 0
-  }
+    sidebarDepth: 0,
+  },
 }
 ```
 
